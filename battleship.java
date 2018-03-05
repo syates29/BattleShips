@@ -50,53 +50,62 @@ public class battleship {
 		String userPlacement;
 		String orientation;
 
-		//Establish new scanner to attain user input
-		Scanner scanner = new Scanner(System.in);
+		//Iterate through ships in ship list
+		for (String ship : ships) {
+			
+			boolean retry = true;
+			
+			while(retry == true) {
 
-		try {
+				try {
+					
+					//Establish new scanner to attain user input
+					Scanner scanner = new Scanner(System.in);
 
-			//Iterate through ships in ship list
-			for (String ship : ships) {
+					//Prompt user to place the current ship
+					System.out.println("Place your " + ship + ":");
 
-				//Prompt user to place the current ship
-				System.out.println("Place your " + ship + ":");
+					//Create a new ship object
+					ship test = new ship(ship);
 
-				//Create a new ship object
-				ship test = new ship(ship);
+					//Scan for valid coordinates
+					userPlacement =	scanner.next(pValidInput);
 
-				//Scan for valid coordinates
-				userPlacement =	scanner.next(pValidInput);
+					//Prompt user to declare orientation
+					System.out.println("Orientation (horizontal or vertical):");
 
-				//Prompt user to declare orientation
-				System.out.println("Orientation (horizontal or vertical):");
+					//Scan for valid orientation
+					orientation = scanner.next(pValidInput2);
 
-				//Scan for valid orientation
-				orientation = scanner.next(pValidInput2);
+					//Take user's input and call placeShip on the playerBoard
+					playerBoard.placeShip(userPlacement, orientation, test.size);
 
-//				System.out.println(userPlacement);
-//				System.out.println(orientation);
-//				System.out.println(test.size);
+					//Print the playerBoard (should now include a new ship)
+					playerBoard.printBoard();
+					
+					//Close the scanner
+					scanner.close();
 
-				//Take user's input and call placeShip on the playerBoard
-				playerBoard.placeShip(userPlacement, orientation, test.size);
+					retry = false;
 
-				//Print the playerBoard (should now include a new ship)
-				playerBoard.printBoard();
+				}
+
+
+				//If input is invalid: trigger catch
+				catch (InputMismatchException e) {
+					//Inform user that input was wrong
+
+					System.out.println("Unexpected input");
+
+					//Need to establish retry for incorrect input/placement
+					//retry;
+				}
 
 			}
-
-		}
-
-		//If input is invalid: trigger catch
-		catch (InputMismatchException e) {
-			//Inform user that input was wrong
-			System.out.println("Unexpected input");
 			
-			//Should prompt user for new input
 		}
-
-		//Close the scanner
-		scanner.close();
+		
+		System.out.println("Ships Placed!");
 
 	}
 	
@@ -140,6 +149,15 @@ public class battleship {
 	public static void main(String[] args) {
 		
 		battleship testGame = new battleship();
+		
+		
+		
+//		testGame.playerBoard.placeShip("b3", "vertical", 2);
+//		
+//		testGame.playerBoard.printBoard();
+		
+//		System.out.println(testGame.playerBoard.isValidLocation(1, 2, 2, "vertical"));
+		
 	
 //		for (String ship : ship.ships) {
 //			

@@ -133,7 +133,7 @@ public class board {
 		//If length of coordinates was 3, the row must be 10 (i.e. b10)
 		if (coords.length == 3) {
 			
-			row = 10;
+			row = 9;
 			
 		}
 		
@@ -152,6 +152,7 @@ public class board {
 		}
 		
 		
+		
 		//If given inputs are not valid, print message
 		if(!(isValidLocation(column, row, size, orientation))) {
 			
@@ -163,7 +164,7 @@ public class board {
 		
 		//If reached this stage, inputs must have been valid
 		//If the orientation was set as vertical
-		if(orientation == "vertical"){
+		if(orientation.equals("vertical")){
 
 			//Iterate for size of ship (i.e. 3 places)
 			for(int i = 0; i < size; i++) {
@@ -176,7 +177,7 @@ public class board {
 		}
 
 		//If the orientation was set as vertical
-		else if(orientation == "horizontal"){
+		else if(orientation.equals("horizontal")){
 
 			//Iterate for size of ship (i.e. 3 places)
 			for(int i = 0; i < size; i++) {
@@ -202,7 +203,7 @@ public class board {
 	public boolean isValidLocation(int column, int row, int size, String orientation) {
 		
 		//If the size of the ship if zero - return false
-		if(size == 0) {
+		if (size == 0) {
 			
 			return false;
 			
@@ -211,7 +212,7 @@ public class board {
 		try {
 			
 			//If the orientation is vertical
-			if(orientation == "vertical"){
+			if(orientation.equals("vertical")){
 
 				//Iterate over size of ship no. of places
 				for(int i = 0; i < size; i++) {
@@ -231,7 +232,7 @@ public class board {
 			}
 
 			//If the orientation is horizontal
-			else if(orientation == "horizontal"){
+			else if(orientation.equals("horizontal")){
 
 				//Iterate over size of ship no. of places
 				for(int i = 0; i < size; i++) {
@@ -252,7 +253,7 @@ public class board {
 			
 			//For any other input, return false
 			else {
-				
+
 				return false;
 				
 			}
@@ -274,15 +275,15 @@ public class board {
 	
 	public static void main(String[] args) {
 		
-//		board test = new board();
+		board test = new board();
 //		
 //		test.printBoard();
 //		
-//		System.out.println(test.isValidLocation(0, 2, 2, "vertical"));
+//		System.out.println(test.isValidLocation(1, 9, 2, "horizontal"));
 //		
-//		test.placeShip("a2", "vertical", 2);
+		test.placeShip("a10", "horizontal", 2);
 //		
-//		test.printBoard();
+		test.printBoard();
 
 	}
 	
